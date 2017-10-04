@@ -30,21 +30,24 @@ class main
         $this->date = $date;
         $this->tar  = $tar;
         $this->year = $year;
+        echo "<h1>Week 4 Assignment</h1>";
+        echo "<h2> Input</h2>";
         echo "The value of \$date: " . $this->date . "<br>";
         echo "The value of \$tar: " . $this->tar . "<br>";
         echo "The value of \$year: ";
         print_r($this->year);
-        echo "<br/>";
+        echo "<hr>";
+        echo "<h2> Results</h2>";
     }
     
     public function replaceString()
     {
         $this->date = str_replace("-", "/", $this->date);
-        echo " The value of date after replacing '-' with '/' : $this->date <br/>";
+        echo " 1. The value of \$date after replacing '-' with '/' : $this->date <br/>";
     }
     
     public function compareString()
-    {
+    {   echo "2. Comparing \$date with \$tar returned the value: ";
         if (strcmp($this->date, $this->tar) > 0) {
             echo "The Future <br/>";
         } elseif (strcmp($this->date, $this->tar) < 0) {
@@ -58,12 +61,20 @@ class main
     public function searchString()
     {
         $val = (str_word_count($this->date, 2, "/"));
-        echo "/ is present at following positions : <br/>";
-        foreach ($val as $position => $value) {
-            echo "$position<br/>";
+        echo "3. Special character / is present at positions: ";
+        $counter = 0;
+
+            foreach ($val as $position => $value) {
+            echo $position+1;
+            if($counter<(count($val)-1)){
+                echo ',';
+                $counter++;
+            }
+
         }
+        echo "</br>";
         if (count($val) > 1) {
-            echo " More than one '/' position found. Delimited value of date is : " . (str_replace("/", " ", $this->date)) . "</br>";
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;More than one '/' position found. Delimited value of date is : " . (str_replace("/", " ", $this->date)) . "</br>";
         }
     }
     
@@ -71,13 +82,13 @@ class main
     {
         $str      = "The value of \$tar: " . $this->tar;
         $numWords = str_word_count($str);
-        echo "Number of words in the string (\"$str\") is : $numWords<br/>";
+        echo "4. Number of words in the string (\"$str\") is : $numWords<br/>";
     }
     
     public function returnLength()
     {
         $strLength = strlen($this->date);
-        echo "Length of \$date string is : $strLength<br/>";
+        echo "5. Length of \$date string is : $strLength<br/>";
     }
     
     public function returnAscii()
@@ -85,20 +96,21 @@ class main
         $text      = "Welcome to IS601";
         $firstChar = substr($text, 0, 1);
         $valAscii  = ord($firstChar);
-        echo "ASCII value of first character ($firstChar) of the string ($text) : $valAscii<br/>";
+        echo "6. ASCII value of first character ($firstChar) of the string ($text) : $valAscii<br/>";
     }
     
     public function returnLastChars()
     {
-        echo "Last two characters in \$date :" . (substr($this->date, (strlen($this->date) - 2))) . "</br>";
+        echo "7. Last two characters in \$date :" . (substr($this->date, (strlen($this->date) - 2))) . "</br>";
     }
     
     public function printArray()
     {
         $array = explode("/", $this->date);
+        echo "8. \$date in array format is :";
         print_r($array);
         echo '</br>';
-        echo "Formatted date : " . (implode(" ", $array)) . "</br>";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;Formatted date with spaces : " . (implode(" ", $array)) . "</br>";
         
     }
     
@@ -121,7 +133,7 @@ class main
                     $resultArray[$yr] = "false";
             }
         }
-        echo (implode(" ", $resultArray)) . "</br>";
+        echo "9. The result after checking leap year using <b>foreach</b> statement is :".(implode(" ", $resultArray)) . "</br>";
         
         $leapArray = array();
         for ($i = 0; $i < count($this->year); $i++) {
@@ -142,14 +154,14 @@ class main
             }
             
         }
-        echo (implode(" ", $leapArray))."</br>";
+        echo "10. The result after checking leap year using <b>for</b> statement is :".(implode(" ", $leapArray))."</br>";
         
     }
     
     
     public function __destruct()
     {
-        echo "Assignment Completed";
+        echo "<hr><b>***********FINISH**********<b>";
     }
     
 }
